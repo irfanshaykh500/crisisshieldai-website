@@ -3,38 +3,337 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CrisisShieldAI | Emergency Intelligence & Cyber Defense</title>
-  <meta name="description" content="CrisisShieldAI is an AI-powered emergency intelligence and cybersecurity response platform." />
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0} body{font-family:Arial,sans-serif;background:#07111f;color:#e5e7eb;line-height:1.6}
-    a{color:inherit;text-decoration:none}.container{width:min(1120px,92%);margin:auto}
-    header{padding:24px 0;border-bottom:1px solid rgba(148,163,184,.2);background:#07111f;position:sticky;top:0;z-index:10}
-    nav{display:flex;justify-content:space-between;align-items:center;gap:20px}.brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:24px}
-    .logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#38bdf8,#2563eb);display:grid;place-items:center}
-    .navlinks{display:flex;gap:22px;align-items:center;font-size:14px;color:#cbd5e1}.btn{display:inline-flex;padding:13px 20px;border-radius:12px;font-weight:800;background:linear-gradient(135deg,#dc2626,#ef4444);color:white}
-    .btn.secondary{background:#1e293b;border:1px solid rgba(148,163,184,.25)}.hero{padding:92px 0 70px;background:radial-gradient(circle at 20% 10%,rgba(56,189,248,.18),transparent 34%),radial-gradient(circle at 80% 20%,rgba(239,68,68,.14),transparent 32%)}
-    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:42px;align-items:center}.badge{display:inline-flex;padding:8px 13px;border-radius:999px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.28);color:#86efac;font-weight:800;font-size:13px;margin-bottom:24px}
-    h1{font-size:clamp(42px,6vw,72px);line-height:1.02;letter-spacing:-2px;margin-bottom:24px}.hero p{font-size:19px;color:#cbd5e1;max-width:720px;margin-bottom:30px}.actions{display:flex;gap:14px;flex-wrap:wrap}
-    .panel{background:linear-gradient(180deg,rgba(30,41,59,.95),rgba(15,23,42,.95));border:1px solid rgba(148,163,184,.22);border-radius:26px;padding:24px;box-shadow:0 24px 70px rgba(0,0,0,.35)}
-    .metric-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}.metric{padding:18px;border-radius:18px;background:rgba(15,23,42,.75);border:1px solid rgba(148,163,184,.15)}.metric strong{display:block;font-size:34px;color:white}.metric span{color:#94a3b8;font-size:13px}
-    section{padding:76px 0}.section-title{font-size:38px;margin-bottom:14px;letter-spacing:-1px}.section-subtitle{color:#cbd5e1;max-width:780px;margin-bottom:34px}
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:rgba(15,23,42,.82);border:1px solid rgba(148,163,184,.18);border-radius:22px;padding:24px}.card .icon{font-size:30px;margin-bottom:16px}.card h3{font-size:20px;margin-bottom:10px;color:white}.card p{color:#cbd5e1;font-size:15px}
-    .usecases{display:flex;flex-wrap:wrap;gap:12px}.pill{padding:12px 16px;border-radius:999px;background:#1e293b;border:1px solid rgba(148,163,184,.18);color:#dbeafe;font-weight:700}
-    .founder{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px;align-items:center;background:linear-gradient(135deg,rgba(37,99,235,.12),rgba(239,68,68,.1));border:1px solid rgba(148,163,184,.2);border-radius:28px;padding:32px}
-    .avatar{min-height:260px;border-radius:24px;background:linear-gradient(135deg,rgba(56,189,248,.25),rgba(37,99,235,.13)),#111827;display:grid;place-items:center;font-size:76px;border:1px solid rgba(148,163,184,.18)}
-    footer{padding:36px 0;border-top:1px solid rgba(148,163,184,.18);color:#94a3b8}.footer-row{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
-    @media(max-width:860px){.hero-grid,.founder{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.navlinks{display:none}.metric-grid{grid-template-columns:1fr}}
-  </style>
+  <meta name="description" content="CrisisShieldAI — AI-Powered Cyber Threat Intelligence, Vulnerability Management, and Incident Response Platform for SOC teams, enterprises and MSSPs." />
+  <meta name="theme-color" content="#05070d" />
+  <title>CrisisShieldAI — AI-Powered Cyber Threat Intelligence Platform</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="canonical" href="https://crisisshieldai.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CrisisShieldAI" />
+  <meta property="og:title" content="CrisisShieldAI — AI-Powered Cyber Threat Intelligence Platform" />
+  <meta property="og:description" content="Detect, prioritize, and respond to cyber threats with real-time intelligence and AI-driven insights — built for SOC teams, enterprises, and MSSPs." />
+  <meta property="og:url" content="https://crisisshieldai.com/" />
+  <meta property="og:image" content="https://crisisshieldai.com/assets/og-image.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CrisisShieldAI — AI-Powered Cyber Threat Intelligence Platform" />
+  <meta name="twitter:description" content="Detect, prioritize, and respond to cyber threats with real-time intelligence and AI-driven insights — built for SOC teams, enterprises, and MSSPs." />
+  <meta name="twitter:image" content="https://crisisshieldai.com/assets/og-image.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-  <header><div class="container"><nav><div class="brand"><div class="logo">🛡️</div>CrisisShieldAI</div><div class="navlinks"><a href="#features">Features</a><a href="#usecases">Use Cases</a><a href="#founder">Founder</a><a class="btn" href="https://crisisshieldai-ttk8gfhegjuecpxuhqiyls.streamlit.app/" target="_blank">Launch Platform</a></div></nav></div></header>
+  <!-- ambient layers -->
+  <canvas id="bg-grid" aria-hidden="true"></canvas>
+  <div class="aurora" aria-hidden="true"><span class="aurora-blob a1"></span><span class="aurora-blob a2"></span><span class="aurora-blob a3"></span></div>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ====================== NAV ====================== -->
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#home" class="brand" aria-label="CrisisShieldAI home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
+            <path d="M16 2 4 7v8c0 7.5 5.2 13 12 15 6.8-2 12-7.5 12-15V7L16 2Z" stroke="url(#g1)" stroke-width="1.6"/>
+            <path d="M11 16.5 14.5 20 21 12.5" stroke="url(#g1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs><linearGradient id="g1" x1="4" y1="2" x2="28" y2="30"><stop stop-color="#4da3ff"/><stop offset="1" stop-color="#7b5cff"/></linearGradient></defs>
+          </svg>
+        </span>
+        <span class="brand-text">Crisis<span>ShieldAI</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#features">Features</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#platform">Platform</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="docs.html">Docs</a>
+        <a href="#blog">Blog</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="dashboard.html" class="btn btn-primary magnetic">
+          Live Dashboard
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
   <main>
-    <section class="hero"><div class="container hero-grid"><div><div class="badge">● AI Crisis Intelligence Platform</div><h1>AI-Powered Emergency Intelligence & Cyber Defense</h1><p>CrisisShieldAI helps organizations detect, prioritize, and respond to physical crisis events, cybersecurity incidents, infrastructure disruptions, and public safety alerts from one unified command platform.</p><div class="actions"><a class="btn" href="https://crisisshieldai-ttk8gfhegjuecpxuhqiyls.streamlit.app/" target="_blank">Launch Platform</a><a class="btn secondary" href="#features">Explore Features</a></div></div><div class="panel"><h2>Live Command Intelligence</h2><p style="color:#cbd5e1;margin-top:8px">Built for rapid decision support across emergency response, cybersecurity, healthcare, and critical infrastructure.</p><div class="metric-grid"><div class="metric"><strong>AI</strong><span>Response Playbooks</span></div><div class="metric"><strong>24/7</strong><span>Monitoring Concept</span></div><div class="metric"><strong>Cyber</strong><span>Incident Readiness</span></div><div class="metric"><strong>Geo</strong><span>Incident Mapping</span></div></div></div></div></section>
-    <section id="features"><div class="container"><h2 class="section-title">Platform Features</h2><p class="section-subtitle">A unified dashboard for situational awareness, threat prioritization, executive reporting, and cyber incident response.</p><div class="cards"><div class="card"><div class="icon">🛡️</div><h3>Cyber Incident Response</h3><p>AI-guided response workflows for ransomware, phishing, DDoS, malware, and data breach scenarios.</p></div><div class="card"><div class="icon">🗺️</div><h3>Real-Time Incident Mapping</h3><p>Visualize incidents by location, severity, source, and operational impact using geospatial intelligence.</p></div><div class="card"><div class="icon">🤖</div><h3>AI Recommendations</h3><p>Generate recommended actions based on incident type, severity score, confidence level, and affected services.</p></div><div class="card"><div class="icon">🚨</div><h3>Emergency Command Center</h3><p>Monitor physical disasters, infrastructure outages, cyber events, and misinformation from one command dashboard.</p></div><div class="card"><div class="icon">📊</div><h3>Executive Analytics</h3><p>Convert complex crisis data into simple executive summaries, KPIs, and operational risk views.</p></div><div class="card"><div class="icon">⚡</div><h3>AI Response Playbooks</h3><p>Provide step-by-step response guidance to improve speed, consistency, and coordination during crisis events.</p></div></div></div></section>
-    <section id="usecases"><div class="container"><h2 class="section-title">Built for High-Impact Environments</h2><p class="section-subtitle">CrisisShieldAI is designed as a product prototype for organizations that need fast operational intelligence.</p><div class="usecases"><span class="pill">Healthcare Systems</span><span class="pill">Government Agencies</span><span class="pill">Smart Cities</span><span class="pill">Critical Infrastructure</span><span class="pill">SOC Teams</span><span class="pill">Emergency Response Teams</span><span class="pill">Public Safety Operations</span></div></div></section>
-    <section id="founder"><div class="container founder"><div class="avatar">🛡️</div><div><h2 class="section-title">Founded by Shaikh Irfan</h2><p class="section-subtitle">Shaikh Irfan is the Founder & CEO of CrisisShieldAI, with a cybersecurity background focused on threat intelligence, vulnerability management, incident response, and enterprise risk reduction.</p><p style="color:#cbd5e1">CrisisShieldAI reflects a mission to strengthen public safety, cyber resilience, and critical infrastructure protection through practical AI-powered decision support.</p><br><a class="btn" href="https://crisisshieldai-ttk8gfhegjuecpxuhqiyls.streamlit.app/" target="_blank">Open Live Product</a></div></div></section>
-    <section><div class="container panel"><h2 class="section-title">Important Notice</h2><p style="color:#cbd5e1">CrisisShieldAI is currently a prototype and decision-support platform. It is designed for demonstration, research, and product development purposes. It should not replace official emergency services, government alerts, law enforcement, cybersecurity teams, or professional incident response procedures.</p></div></section>
+    <!-- ====================== HERO ====================== -->
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="pill" data-anim="up"><span class="pulse-dot"></span> Real-time threat intelligence · Live</span>
+          <h1 data-anim="up">
+            AI-Powered<br/>
+            <span class="grad-text" data-decrypt>Cyber Threat</span><br/>
+            Intelligence Platform
+          </h1>
+          <p class="hero-sub" data-anim="up">
+            Detect, prioritize, and respond to cyber threats with real-time intelligence
+            and AI-driven insights — built for SOC teams, enterprises, and MSSPs.
+          </p>
+          <div class="hero-actions" data-anim="up">
+            <a href="dashboard.html" class="btn btn-primary btn-lg magnetic">
+              Explore the Platform
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#platform" class="btn btn-outline btn-lg magnetic">How it works</a>
+          </div>
+          <div class="hero-trust" data-anim="up">
+            <span>Aligned with the standards security teams trust</span>
+            <div class="logo-row">
+              <span>MITRE ATT&CK</span><i></i><span>CVE / NVD</span><i></i><span>STIX / TAXII</span><i></i><span>OSINT</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Threat radar + console -->
+        <div class="hero-visual" data-anim="scale">
+          <div class="radar glass" id="radar">
+            <svg class="radar-svg" viewBox="0 0 240 240" aria-hidden="true">
+              <defs>
+                <radialGradient id="sweep" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(77,163,255,.55)"/>
+                  <stop offset="100%" stop-color="rgba(77,163,255,0)"/>
+                </radialGradient>
+              </defs>
+              <circle cx="120" cy="120" r="110" class="ring"/>
+              <circle cx="120" cy="120" r="78" class="ring"/>
+              <circle cx="120" cy="120" r="46" class="ring"/>
+              <circle cx="120" cy="120" r="14" class="ring"/>
+              <line x1="120" y1="10" x2="120" y2="230" class="cross"/>
+              <line x1="10" y1="120" x2="230" y2="120" class="cross"/>
+              <g class="sweep-g"><path d="M120 120 L120 10 A110 110 0 0 1 213 66 Z" fill="url(#sweep)"/></g>
+              <g id="blips"></g>
+            </svg>
+            <div class="radar-tag"><span class="pulse-dot"></span> SCANNING · 240 feeds</div>
+          </div>
+
+          <div class="console glass" id="console">
+            <div class="console-bar">
+              <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+              <span class="console-title">threat-stream · live</span>
+            </div>
+            <div class="console-body" id="threatStream"></div>
+          </div>
+
+          <div class="float-card fc-1 glass"><span class="fc-label">Threats Blocked</span><b class="fc-num" data-count="184290">0</b><span class="fc-trend up">▲ 12.4% today</span></div>
+          <div class="float-card fc-2 glass"><span class="fc-label">Mean Time to Detect</span><b class="fc-num">1.8<small>s</small></b><span class="fc-trend down">▼ 38% faster</span></div>
+        </div>
+      </div>
+
+      <div class="hero-stats container">
+        <div class="stat"><b data-count="2400000000">0</b><span>IOCs correlated</span></div>
+        <div class="stat"><b data-count="240">0</b><span>Threat feeds aggregated</span></div>
+        <div class="stat"><b data-count="99.98" data-decimals="2">0</b><span>% uptime SLA</span></div>
+        <div class="stat"><b data-count="6">0</b><span>Min avg triage time</span></div>
+      </div>
+    </section>
+
+    <!-- ====================== MARQUEE ====================== -->
+    <section class="marquee-sec" aria-hidden="true">
+      <div class="marquee">
+        <div class="marquee-track">
+          <span>Splunk</span><i>◆</i><span>Microsoft Sentinel</span><i>◆</i><span>QRadar</span><i>◆</i><span>CrowdStrike</span><i>◆</i><span>Microsoft Defender</span><i>◆</i><span>SentinelOne</span><i>◆</i><span>Qualys</span><i>◆</i><span>Tenable</span><i>◆</i><span>Rapid7</span><i>◆</i><span>AlienVault OTX</span><i>◆</i><span>VirusTotal</span><i>◆</i><span>MISP</span><i>◆</i>
+        </div>
+        <div class="marquee-track" aria-hidden="true">
+          <span>Splunk</span><i>◆</i><span>Microsoft Sentinel</span><i>◆</i><span>QRadar</span><i>◆</i><span>CrowdStrike</span><i>◆</i><span>Microsoft Defender</span><i>◆</i><span>SentinelOne</span><i>◆</i><span>Qualys</span><i>◆</i><span>Tenable</span><i>◆</i><span>Rapid7</span><i>◆</i><span>AlienVault OTX</span><i>◆</i><span>VirusTotal</span><i>◆</i><span>MISP</span><i>◆</i>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== FEATURES (BENTO) ====================== -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head" data-anim="up">
+          <span class="eyebrow">Capabilities</span>
+          <h2>One platform.<br/><span class="grad-text">Total cyber visibility.</span></h2>
+          <p>Everything your security team needs to move from raw signal to decisive response.</p>
+        </div>
+
+        <div class="bento">
+          <article class="bento-card glass span-2 tall" data-anim="up" data-tilt>
+            <div class="bc-glow"></div>
+            <span class="fc-icon ic-blue"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.7"/></svg></span>
+            <h3>Threat Intelligence</h3>
+            <p>Real-time cyber alerts with feed aggregation, IOC monitoring and emerging-threat tracking — correlated and scored automatically.</p>
+            <ul class="check"><li>Real-time cyber alerts</li><li>Threat feed aggregation</li><li>IOC monitoring</li><li>Emerging threat tracking</li></ul>
+          </article>
+
+          <article class="bento-card glass" data-anim="up" data-tilt>
+            <span class="fc-icon ic-violet"><svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M12 3 4 6v5c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12h6M12 9v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+            <h3>Vulnerability Management</h3>
+            <p>CVE tracking, risk prioritization, asset visibility and patch recommendations.</p>
+          </article>
+
+          <article class="bento-card glass" data-anim="up" data-tilt>
+            <span class="fc-icon ic-cyan"><svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M13 2 3 14h7l-1 8 11-13h-7l0-7Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+            <h3>Incident Response</h3>
+            <p>Triage, AI-generated recommendations, response workflows and investigation support.</p>
+          </article>
+
+          <article class="bento-card glass span-2" data-anim="up" data-tilt>
+            <span class="fc-icon ic-green"><svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M4 4v16h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M8 14l3-4 3 2 4-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>Executive Dashboard</h3>
+            <p>A board-ready view of security posture, critical alerts, threat trends and risk scores — the whole estate at a glance.</p>
+            <div class="mini-bars"><i style="--h:40%"></i><i style="--h:70%"></i><i style="--h:55%"></i><i style="--h:90%"></i><i style="--h:62%"></i><i style="--h:78%"></i><i style="--h:48%"></i></div>
+          </article>
+
+          <article class="bento-card glass" data-anim="up" data-tilt>
+            <span class="fc-icon ic-amber"><svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M7 3h7l5 5v13H7V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 3v5h5M10 13h6M10 17h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+            <h3>Reporting</h3>
+            <p>PDF reports, CSV exports and one-click executive summaries.</p>
+          </article>
+
+          <article class="bento-card glass cta-card span-2" data-anim="up">
+            <h3>See it on your data</h3>
+            <p>Connect a feed and watch CrisisShieldAI correlate, score and prioritize in real time.</p>
+            <a href="dashboard.html" class="btn btn-primary magnetic">Open Live Dashboard →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== SOLUTIONS ====================== -->
+    <section class="section" id="solutions">
+      <div class="container">
+        <div class="section-head" data-anim="up">
+          <span class="eyebrow">Solutions</span>
+          <h2>Built for the teams on the <span class="grad-text">front line</span></h2>
+          <p>Tailored outcomes for every security operating model.</p>
+        </div>
+        <div class="solutions-grid">
+          <article class="solution glass" data-anim="up"><div class="sol-num">01</div><h3>SOC Teams</h3><p>Cut through alert noise and resolve incidents in a fraction of the time.</p><span class="tag">Faster investigations</span><span class="tag">Alert prioritization</span></article>
+          <article class="solution glass" data-anim="up"><div class="sol-num">02</div><h3>Enterprises</h3><p>Continuously manage security posture and measurably reduce organizational risk.</p><span class="tag">Posture management</span><span class="tag">Risk reduction</span></article>
+          <article class="solution glass" data-anim="up"><div class="sol-num">03</div><h3>Critical Infrastructure</h3><p>Monitor threats against OT and critical systems to keep operations resilient.</p><span class="tag">Threat monitoring</span><span class="tag">Operational resilience</span></article>
+          <article class="solution glass" data-anim="up"><div class="sol-num">04</div><h3>MSSPs</h3><p>Manage many customers from a single pane with centralized, scalable monitoring.</p><span class="tag">Multi-customer visibility</span><span class="tag">Centralized monitoring</span></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== PLATFORM ====================== -->
+    <section class="section" id="platform">
+      <div class="container">
+        <div class="section-head" data-anim="up">
+          <span class="eyebrow">The Platform</span>
+          <h2>From raw signal to <span class="grad-text">decisive action</span></h2>
+          <p>A three-stage intelligence pipeline that turns scattered data into prioritized response.</p>
+        </div>
+        <div class="pipeline">
+          <div class="pipe-line" aria-hidden="true"><span id="pipeProgress"></span></div>
+          <div class="pipe-stage glass" data-anim="up"><div class="pipe-head"><span class="pipe-badge">Layer 01</span><h3>Data Collection</h3></div><p>Ingest from every relevant security source.</p><div class="chips"><span>CVE databases</span><span>Threat intel feeds</span><span>SIEM platforms</span><span>EDR solutions</span><span>Vulnerability scanners</span><span>OSINT feeds</span></div></div>
+          <div class="pipe-stage glass accent" data-anim="up"><div class="pipe-head"><span class="pipe-badge violet">Layer 02</span><h3>AI Intelligence Engine</h3></div><p>Correlate, score, and surface what matters.</p><div class="chips"><span>Threat correlation</span><span>Risk scoring</span><span>IOC analysis</span><span>Pattern recognition</span></div></div>
+          <div class="pipe-stage glass" data-anim="up"><div class="pipe-head"><span class="pipe-badge">Layer 03</span><h3>Response Layer</h3></div><p>Act, report, and notify the right people.</p><div class="chips"><span>Dashboard</span><span>Reporting</span><span>Notifications</span><span>Investigation workflows</span></div></div>
+        </div>
+        <div class="stack-strip" data-anim="up">
+          <span class="strip-label">Engineered with a modern, scalable stack</span>
+          <div class="strip-items"><span>Next.js 15</span><span>TypeScript</span><span>TailwindCSS</span><span>FastAPI</span><span>PostgreSQL</span><span>OpenAI</span><span>LangChain</span><span>AWS</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== DASHBOARD PREVIEW ====================== -->
+    <section class="section" id="dashboard">
+      <div class="container">
+        <div class="section-head" data-anim="up">
+          <span class="eyebrow">Live Dashboard</span>
+          <h2>Your entire security posture, <span class="grad-text">at a glance</span></h2>
+          <p>Executive summary, threat feed, vulnerabilities and incidents — unified in real time.</p>
+        </div>
+        <div class="dash-preview glass" data-anim="up" data-tilt>
+          <div class="dash-top"><div class="dash-kpis">
+            <div class="kpi"><span>Total Assets</span><b data-count="1284">0</b></div>
+            <div class="kpi"><span>Open Vulns</span><b data-count="347">0</b></div>
+            <div class="kpi crit"><span>Critical</span><b data-count="18">0</b></div>
+            <div class="kpi"><span>Active Incidents</span><b data-count="5">0</b></div>
+            <div class="kpi risk"><span>Risk Score</span><b data-count="72">0</b></div>
+          </div></div>
+          <div class="dash-grid">
+            <div class="dash-panel">
+              <div class="panel-h">Vulnerabilities by Severity</div>
+              <div class="sev-bars">
+                <div class="sev"><span>Critical</span><div class="track"><i class="crit" style="--w:88%"></i></div><b>88</b></div>
+                <div class="sev"><span>High</span><div class="track"><i class="high" style="--w:64%"></i></div><b>142</b></div>
+                <div class="sev"><span>Medium</span><div class="track"><i class="med" style="--w:42%"></i></div><b>96</b></div>
+                <div class="sev"><span>Low</span><div class="track"><i class="low" style="--w:20%"></i></div><b>21</b></div>
+              </div>
+            </div>
+            <div class="dash-panel"><div class="panel-h">Threat Intelligence Feed</div><div class="feed-mini" id="feedMini"></div></div>
+          </div>
+          <a href="dashboard.html" class="dash-launch btn btn-primary magnetic">Open Full Dashboard →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== BLOG ====================== -->
+    <section class="section" id="blog">
+      <div class="container">
+        <div class="section-head" data-anim="up">
+          <span class="eyebrow">Intelligence Briefings</span>
+          <h2>From the <span class="grad-text">CrisisShieldAI</span> research desk</h2>
+          <p>Field notes on the threats shaping the modern attack surface.</p>
+        </div>
+        <div class="blog-grid">
+          <a class="blog-card glass" href="blog-ransomware-extortion-economy.html" data-anim="up"><span class="bc-cat">Ransomware</span><h3>Ransomware Trends: The 2026 Extortion Economy</h3><p>How double-extortion and RaaS affiliates are reshaping incident economics.</p><span class="bc-read">6 min read →</span></a>
+          <a class="blog-card glass" href="blog-zero-day-exposure-window.html" data-anim="up"><span class="bc-cat violet">Zero-Day</span><h3>Zero-Day Vulnerabilities: Closing the Exposure Window</h3><p>A framework for prioritizing unpatched, actively exploited CVEs.</p><span class="bc-read">5 min read →</span></a>
+          <a class="blog-card glass" href="blog-threat-hunting-ai-correlation.html" data-anim="up"><span class="bc-cat cyan">Threat Hunting</span><h3>Threat Hunting at Scale with AI Correlation</h3><p>Turning billions of IOCs into a handful of leads worth chasing.</p><span class="bc-read">7 min read →</span></a>
+          <a class="blog-card glass" href="blog-ai-signal-not-noise.html" data-anim="up"><span class="bc-cat green">AI Security</span><h3>AI in Cybersecurity: Signal, Not Noise</h3><p>Where machine reasoning genuinely moves the needle for the SOC.</p><span class="bc-read">4 min read →</span></a>
+          <a class="blog-card glass" href="blog-incident-response-playbooks.html" data-anim="up"><span class="bc-cat amber">IR</span><h3>Incident Response Playbooks That Actually Run</h3><p>Designing workflows responders trust under pressure.</p><span class="bc-read">6 min read →</span></a>
+          <a class="blog-card glass" href="blog-threat-intelligence-feeds-to-decisions.html" data-anim="up"><span class="bc-cat">Threat Intel</span><h3>Threat Intelligence: From Feeds to Decisions</h3><p>Operationalizing intel so it changes what your team does next.</p><span class="bc-read">5 min read →</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== CTA ====================== -->
+    <section class="section cta-section" id="cta">
+      <div class="container">
+        <div class="cta-panel glass" data-anim="scale">
+          <div class="cta-glow" aria-hidden="true"></div>
+          <span class="eyebrow">Get Started</span>
+          <h2>See CrisisShieldAI defend <span class="grad-text">your</span> attack surface</h2>
+          <p>Explore the live dashboard, or reach out for a tailored walkthrough of threat intelligence, vulnerability management and AI-driven incident response.</p>
+          <div class="cta-actions">
+            <a href="dashboard.html" class="btn btn-primary btn-lg magnetic">Open Live Dashboard →</a>
+            <a href="mailto:hello@crisisshieldai.com?subject=CrisisShieldAI%20Demo%20Request" class="btn btn-outline btn-lg magnetic">Email the team</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer><div class="container footer-row"><div>© 2026 CrisisShieldAI. All rights reserved.</div><div>Founder & CEO: Shaikh Irfan</div></div></footer>
+
+  <!-- ====================== FOOTER ====================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#home" class="brand">
+          <span class="brand-mark"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><path d="M16 2 4 7v8c0 7.5 5.2 13 12 15 6.8-2 12-7.5 12-15V7L16 2Z" stroke="url(#g2)" stroke-width="1.6"/><path d="M11 16.5 14.5 20 21 12.5" stroke="url(#g2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g2" x1="4" y1="2" x2="28" y2="30"><stop stop-color="#4da3ff"/><stop offset="1" stop-color="#7b5cff"/></linearGradient></defs></svg></span>
+          <span class="brand-text">Crisis<span>ShieldAI</span></span>
+        </a>
+        <p>AI-powered cyber threat intelligence, vulnerability management and incident response — for SOCs, enterprises and MSSPs.</p>
+        <span class="copyright">© 2026 CrisisShieldAI. All rights reserved.</span>
+      </div>
+      <div class="footer-cols">
+        <div><h4>Platform</h4><a href="#features">Features</a><a href="#platform">Architecture</a><a href="#dashboard">Dashboard</a></div>
+        <div><h4>Solutions</h4><a href="#solutions">SOC Teams</a><a href="#solutions">Enterprises</a><a href="#solutions">Critical Infra</a><a href="#solutions">MSSPs</a></div>
+        <div><h4>Resources</h4><a href="#blog">Blog</a><a href="docs.html">Documentation</a><a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">MITRE ATT&CK</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

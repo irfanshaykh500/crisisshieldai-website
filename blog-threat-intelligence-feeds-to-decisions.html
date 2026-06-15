@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Operationalizing intel so it changes what your team does next — instead of filling another dashboard nobody reads." />
+  <meta name="theme-color" content="#05070d" />
+  <title>Threat Intelligence: From Feeds to Decisions — CrisisShieldAI</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="canonical" href="https://crisisshieldai.com/blog-threat-intelligence-feeds-to-decisions.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Threat Intelligence: From Feeds to Decisions" />
+  <meta property="og:description" content="Operationalizing intel so it changes what your team does next — instead of filling another dashboard nobody reads." />
+  <meta property="og:image" content="https://crisisshieldai.com/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/content.css" />
+</head>
+<body>
+  <canvas id="bg-grid" aria-hidden="true"></canvas>
+  <div class="aurora" aria-hidden="true"><span class="aurora-blob a1"></span><span class="aurora-blob a2"></span><span class="aurora-blob a3"></span></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand" aria-label="CrisisShieldAI home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="28" height="28" fill="none"><path d="M16 2 4 7v8c0 7.5 5.2 13 12 15 6.8-2 12-7.5 12-15V7L16 2Z" stroke="url(#g1)" stroke-width="1.6"/><path d="M11 16.5 14.5 20 21 12.5" stroke="url(#g1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g1" x1="4" y1="2" x2="28" y2="30"><stop stop-color="#4da3ff"/><stop offset="1" stop-color="#7b5cff"/></linearGradient></defs></svg></span>
+        <span class="brand-text">Crisis<span>ShieldAI</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#solutions">Solutions</a>
+        <a href="index.html#platform">Platform</a>
+        <a href="docs.html">Docs</a>
+        <a href="index.html#blog" class="active">Blog</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="dashboard.html" class="btn btn-primary magnetic">Live Dashboard
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main class="content-main">
+    <article class="article container">
+      <a class="back-link" href="index.html#blog"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> All briefings</a>
+
+      <header class="article-head">
+        <span class="bc-cat ">Threat Intel</span>
+        <h1>Threat Intelligence: From Feeds to Decisions</h1>
+        <div class="article-meta"><span>CrisisShieldAI Research</span><i></i><span>5 min read</span><i></i><span>Updated 2026</span></div>
+      </header>
+
+      <div class="article-body prose">
+        <p class="lead">Buying more threat feeds is the easiest way to feel productive and accomplish nothing. Raw indicators are not intelligence. Intelligence is what survives the question: "so what should we do differently?"</p>
+        <h2>Three altitudes of intel</h2>
+        <p>Useful programs separate intel by audience:</p>
+        <ul>
+          <li><strong>Strategic</strong> — trends and risk framing for leadership and board decisions.</li>
+          <li><strong>Operational</strong> — campaigns and adversary TTPs that drive detection and hunting.</li>
+          <li><strong>Tactical</strong> — atomic indicators (hashes, IPs, domains) for enforcement points.</li>
+        </ul>
+
+        <h2>The lifecycle</h2>
+        <p>Intel is a process, not a feed: direction, collection, processing, analysis, dissemination, and feedback. Skip the first and last steps — knowing what questions matter, and learning whether your output helped — and you are just moving data around.</p>
+
+        <h2>Speak the standards</h2>
+        <p><a href="https://oasis-open.github.io/cti-documentation/" target="_blank" rel="noopener noreferrer">STIX and TAXII</a> are the OASIS standards for structured, machine-readable intel exchange — STIX is the data model, TAXII the transport. Consuming STIX 2.1 means actors, malware and indicators arrive as linked objects you can enrich and act on, rather than as a flat list of strings.</p>
+
+        <h2>From indicator to action</h2>
+        <p>Prioritize by relevance to your sector, assets and threat model. Enrich and de-duplicate in a threat-intel platform, score confidence, and expire stale tactical indicators automatically. Then close the loop: tactical IOCs become detections and blocklists, operational TTPs become hunt hypotheses mapped to <a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">ATT&amp;CK</a>, and strategic intel informs risk decisions. If a piece of intel changes nothing, it was noise.</p>
+        <div class="takeaways">
+          <h4>Key takeaways</h4>
+          <ul>
+          <li>Raw feeds are not intelligence — intel is what changes a decision.</li>
+          <li>Separate strategic, operational and tactical intel by audience and use.</li>
+          <li>Run the full lifecycle; direction and feedback are the steps teams skip.</li>
+          <li>Use STIX/TAXII for structured exchange and auto-expire stale indicators.</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="article-cta glass">
+        <h3>See it on your data</h3>
+        <p>Watch CrisisShieldAI correlate, score and prioritize threats in real time.</p>
+        <a href="dashboard.html" class="btn btn-primary magnetic">Open Live Dashboard →</a>
+      </aside>
+
+      <div class="related">
+        <h4>Related briefings</h4>
+        <div class="related-grid">
+          <a class="related-card" href="blog-threat-hunting-ai-correlation.html"><span>Threat Hunting</span><b>Threat Hunting at Scale with AI Correlation</b></a>
+          <a class="related-card" href="blog-zero-day-exposure-window.html"><span>Zero-Day</span><b>Zero-Day Vulnerabilities: Closing the Exposure Window</b></a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><path d="M16 2 4 7v8c0 7.5 5.2 13 12 15 6.8-2 12-7.5 12-15V7L16 2Z" stroke="url(#g2)" stroke-width="1.6"/><path d="M11 16.5 14.5 20 21 12.5" stroke="url(#g2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g2" x1="4" y1="2" x2="28" y2="30"><stop stop-color="#4da3ff"/><stop offset="1" stop-color="#7b5cff"/></linearGradient></defs></svg></span><span class="brand-text">Crisis<span>ShieldAI</span></span></a>
+        <p>AI-powered cyber threat intelligence, vulnerability management and incident response — for SOCs, enterprises and MSSPs.</p>
+        <span class="copyright">© 2026 CrisisShieldAI. All rights reserved.</span>
+      </div>
+      <div class="footer-cols">
+        <div><h4>Platform</h4><a href="index.html#features">Features</a><a href="index.html#platform">Architecture</a><a href="dashboard.html">Dashboard</a></div>
+        <div><h4>Solutions</h4><a href="index.html#solutions">SOC Teams</a><a href="index.html#solutions">Enterprises</a><a href="index.html#solutions">MSSPs</a></div>
+        <div><h4>Resources</h4><a href="index.html#blog">Blog</a><a href="docs.html">Documentation</a><a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">MITRE ATT&amp;CK</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

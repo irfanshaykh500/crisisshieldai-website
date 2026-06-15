@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CrisisShieldAI Documentation — platform architecture, data collection, STIX/TAXII ingestion, integrations, CVSS scoring and MITRE ATT&CK mapping." />
+  <meta name="theme-color" content="#05070d" />
+  <title>Documentation — CrisisShieldAI</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/content.css" />
+</head>
+<body>
+  <canvas id="bg-grid" aria-hidden="true"></canvas>
+  <div class="aurora" aria-hidden="true"><span class="aurora-blob a1"></span><span class="aurora-blob a2"></span><span class="aurora-blob a3"></span></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand" aria-label="CrisisShieldAI home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="28" height="28" fill="none"><path d="M16 2 4 7v8c0 7.5 5.2 13 12 15 6.8-2 12-7.5 12-15V7L16 2Z" stroke="url(#g1)" stroke-width="1.6"/><path d="M11 16.5 14.5 20 21 12.5" stroke="url(#g1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g1" x1="4" y1="2" x2="28" y2="30"><stop stop-color="#4da3ff"/><stop offset="1" stop-color="#7b5cff"/></linearGradient></defs></svg></span>
+        <span class="brand-text">Crisis<span>ShieldAI</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#solutions">Solutions</a>
+        <a href="index.html#platform">Platform</a>
+        <a href="docs.html" class="active">Docs</a>
+        <a href="index.html#blog">Blog</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="dashboard.html" class="btn btn-primary magnetic">Live Dashboard
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main class="content-main">
+    <div class="container">
+      <a class="back-link" href="index.html"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Back to home</a>
+
+      <div class="page-hero">
+        <span class="eyebrow">Documentation</span>
+        <h1>How <span class="grad-text">CrisisShieldAI</span> works</h1>
+        <p>An architectural reference for the intelligence pipeline — from raw collection through correlation, scoring and dissemination — plus the open standards the platform speaks: STIX/TAXII, CVSS and MITRE ATT&amp;CK.</p>
+      </div>
+
+      <div class="docs-layout">
+        <!-- TOC -->
+        <aside class="docs-toc">
+          <h4>On this page</h4>
+          <nav id="tocNav">
+            <a href="#overview" class="active">Overview</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#collection">Data Collection</a>
+            <a href="#stix-taxii">STIX / TAXII</a>
+            <a href="#scoring">Risk &amp; CVSS Scoring</a>
+            <a href="#attack">MITRE ATT&amp;CK Mapping</a>
+            <a href="#integrations">Integrations</a>
+            <a href="#api">API Quickstart</a>
+            <a href="#standards">Standards &amp; References</a>
+            <a href="#faq">FAQ</a>
+          </nav>
+        </aside>
+
+        <!-- Content -->
+        <div class="docs-content prose">
+          <section class="docs-section" id="overview">
+            <h2>Overview</h2>
+            <p class="lead">CrisisShieldAI turns scattered security signal into prioritized, actionable intelligence. It ingests from threat feeds, vulnerability databases and your own telemetry, then correlates, scores and disseminates what matters to the people and tools that can act on it.</p>
+            <p>The platform is organized as a three-layer pipeline. Each layer is independent and observable, so you can connect a single feed or your entire stack and still get value on day one.</p>
+            <div class="callout"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 8v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg><span>This documentation describes a <b>sample/demonstration</b> platform. Product names referenced (Splunk, Sentinel, CrowdStrike, etc.) are trademarks of their respective owners and are listed only to illustrate typical integrations.</span></div>
+          </section>
+
+          <section class="docs-section" id="architecture">
+            <h2>Architecture</h2>
+            <p>The intelligence pipeline moves data left-to-right through three layers, with a feedback loop from response back into collection and tuning.</p>
+            <ul class="steps">
+              <li><b>Layer 01 — Collection</b><p>Ingest from CVE/NVD databases, commercial and open threat-intel feeds, SIEM/EDR telemetry, vulnerability scanners and OSINT. Sources are normalized into a common internal schema.</p></li>
+              <li><b>Layer 02 — AI Intelligence Engine</b><p>Deduplicate, enrich and correlate indicators; score risk by combining severity, exploitability and asset exposure; recognize patterns and cluster related activity into incidents.</p></li>
+              <li><b>Layer 03 — Response &amp; Dissemination</b><p>Surface prioritized findings to the dashboard, push IOCs to enforcement points, generate reports and notify the right responders. Outcomes feed back to tune collection and scoring.</p></li>
+            </ul>
+            <div class="takeaways">
+              <h4>Design principles</h4>
+              <ul>
+                <li>Standards-first — speak STIX/TAXII, CVSS and ATT&amp;CK so intel is portable.</li>
+                <li>Context over volume — a handful of prioritized leads beats a million raw IOCs.</li>
+                <li>Human-in-the-loop — AI recommends; analysts decide on high-impact actions.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="docs-section" id="collection">
+            <h2>Data Collection</h2>
+            <p>Collection is the foundation. CrisisShieldAI pulls from five broad source classes and normalizes everything into structured indicators before any analysis happens.</p>
+            <ul>
+              <li><strong>Vulnerability data</strong> — CVE records and enrichment from the <a href="https://nvd.nist.gov/" target="_blank" rel="noopener noreferrer">National Vulnerability Database (NVD)</a> and the <a href="https://www.cve.org/" target="_blank" rel="noopener noreferrer">CVE Program</a>.</li>
+              <li><strong>Threat-intel feeds</strong> — commercial and open feeds delivered as STIX over TAXII, or via vendor APIs.</li>
+              <li><strong>Security telemetry</strong> — alerts and logs from SIEM and EDR platforms.</li>
+              <li><strong>Vulnerability scanners</strong> — asset and exposure data from network and host scanners.</li>
+              <li><strong>OSINT</strong> — open-source indicators, paste sites, and actor disclosures.</li>
+            </ul>
+            <p>Each indicator is stamped with a source, a confidence score and a <a href="https://www.first.org/tlp/" target="_blank" rel="noopener noreferrer">TLP</a> marking, and tactical indicators are auto-expired as they decay.</p>
+          </section>
+
+          <section class="docs-section" id="stix-taxii">
+            <h2>STIX / TAXII Ingestion</h2>
+            <p><strong>STIX</strong> (Structured Threat Information Expression) is the data model for cyber threat intelligence; <strong>TAXII</strong> (Trusted Automated Exchange of Intelligence Information) is the transport protocol used to pull it. CrisisShieldAI consumes <a href="https://oasis-open.github.io/cti-documentation/" target="_blank" rel="noopener noreferrer">STIX 2.1</a> objects from TAXII 2.1 collections.</p>
+            <p>A STIX <code>indicator</code> object looks like this:</p>
+            <div class="codeblock">
+              <div class="codeblock-bar">indicator.json · STIX 2.1</div>
+<pre><code>{
+  <span class="s">"type"</span>: <span class="s">"indicator"</span>,
+  <span class="s">"spec_version"</span>: <span class="s">"2.1"</span>,
+  <span class="s">"id"</span>: <span class="s">"indicator--a1b2c3d4-..."</span>,
+  <span class="s">"created"</span>: <span class="s">"2026-01-14T09:00:00Z"</span>,
+  <span class="s">"name"</span>: <span class="s">"Malicious C2 domain"</span>,
+  <span class="s">"pattern"</span>: <span class="s">"[domain-name:value = 'bad.example']"</span>,
+  <span class="s">"pattern_type"</span>: <span class="s">"stix"</span>,
+  <span class="s">"valid_from"</span>: <span class="s">"2026-01-14T09:00:00Z"</span>,
+  <span class="s">"labels"</span>: [<span class="s">"malicious-activity"</span>]
+}</code></pre>
+            </div>
+            <p>Indicators, malware, threat-actor and relationship objects are mapped into the internal schema, enriched, and pushed to enforcement points (SIEM, EDR, firewalls) as blocklists or detections.</p>
+          </section>
+
+          <section class="docs-section" id="scoring">
+            <h2>Risk &amp; CVSS Scoring</h2>
+            <p>Severity alone is a poor prioritization signal. CrisisShieldAI combines three inputs: <strong>CVSS</strong> base severity, <strong>exploit likelihood</strong>, and <strong>asset exposure</strong> in your environment.</p>
+            <p>The <a href="https://www.first.org/cvss/" target="_blank" rel="noopener noreferrer">Common Vulnerability Scoring System (CVSS)</a> produces a 0.0–10.0 score from base metrics (Attack Vector, Attack Complexity, Privileges Required, User Interaction, Scope and the Confidentiality/Integrity/Availability impacts). CVSS v4.0 adds Threat and Supplemental metric groups.</p>
+            <table class="spec-table">
+              <thead><tr><th>CVSS Score</th><th>Severity</th><th>Typical action</th></tr></thead>
+              <tbody>
+                <tr><td>9.0 – 10.0</td><td>Critical</td><td>Patch / mitigate immediately</td></tr>
+                <tr><td>7.0 – 8.9</td><td>High</td><td>Prioritize within SLA</td></tr>
+                <tr><td>4.0 – 6.9</td><td>Medium</td><td>Schedule remediation</td></tr>
+                <tr><td>0.1 – 3.9</td><td>Low</td><td>Track and review</td></tr>
+              </tbody>
+            </table>
+            <div class="callout warn"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M12 3 2 20h20L12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 10v4M12 17v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Don't prioritize on CVSS alone. Combine it with <b>EPSS</b> (exploit-prediction probability) and the <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener noreferrer">CISA KEV catalog</a> — a vuln that is actively exploited outranks a higher-CVSS one that isn't.</span></div>
+          </section>
+
+          <section class="docs-section" id="attack">
+            <h2>MITRE ATT&amp;CK Mapping</h2>
+            <p>Every indicator, detection and incident is tagged to <a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">MITRE ATT&amp;CK</a> tactics (the <em>why</em>) and techniques (the <em>how</em>). This gives a common language for coverage analysis and detection-gap reporting.</p>
+            <table class="spec-table">
+              <thead><tr><th>Technique</th><th>Name</th><th>Reference</th></tr></thead>
+              <tbody>
+                <tr><td>T1486</td><td>Data Encrypted for Impact</td><td><a href="https://attack.mitre.org/techniques/T1486/" target="_blank" rel="noopener noreferrer">attack.mitre.org →</a></td></tr>
+                <tr><td>T1190</td><td>Exploit Public-Facing Application</td><td><a href="https://attack.mitre.org/techniques/T1190/" target="_blank" rel="noopener noreferrer">attack.mitre.org →</a></td></tr>
+                <tr><td>T1558.003</td><td>Kerberoasting</td><td><a href="https://attack.mitre.org/techniques/T1558/003/" target="_blank" rel="noopener noreferrer">attack.mitre.org →</a></td></tr>
+                <tr><td>T1071.001</td><td>Application Layer Protocol: Web (C2)</td><td><a href="https://attack.mitre.org/techniques/T1071/001/" target="_blank" rel="noopener noreferrer">attack.mitre.org →</a></td></tr>
+                <tr><td>T1566.002</td><td>Phishing: Spearphishing Link</td><td><a href="https://attack.mitre.org/techniques/T1566/002/" target="_blank" rel="noopener noreferrer">attack.mitre.org →</a></td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="docs-section" id="integrations">
+            <h2>Integrations</h2>
+            <p>CrisisShieldAI is built to sit inside your existing stack rather than replace it. Typical connectors span four categories:</p>
+            <div class="ref-grid">
+              <div class="ref-card"><b>SIEM</b><p>Splunk, Microsoft Sentinel, Elastic Security, IBM QRadar, Google SecOps.</p></div>
+              <div class="ref-card"><b>SOAR</b><p>Splunk SOAR, Cortex XSOAR, Sentinel playbooks, Tines, Torq.</p></div>
+              <div class="ref-card"><b>EDR / XDR</b><p>CrowdStrike Falcon, Microsoft Defender, SentinelOne, Cortex XDR.</p></div>
+              <div class="ref-card"><b>Vuln &amp; Intel</b><p>Qualys, Tenable, Rapid7, MISP, OpenCTI, AlienVault OTX, VirusTotal.</p></div>
+            </div>
+          </section>
+
+          <section class="docs-section" id="api">
+            <h2>API Quickstart</h2>
+            <p>Tactical IOCs and findings are available over a REST API. Authenticate with a bearer token and pull the latest scored indicators:</p>
+            <div class="codeblock">
+              <div class="codeblock-bar">bash · sample request</div>
+<pre><code><span class="c"># Fetch high-confidence indicators from the last 24h</span>
+curl https://api.crisisshieldai.com/v1/indicators \
+  -H <span class="s">"Authorization: Bearer $CSAI_TOKEN"</span> \
+  -G --data-urlencode <span class="s">"min_confidence=80"</span> \
+     --data-urlencode <span class="s">"since=24h"</span></code></pre>
+            </div>
+            <div class="callout"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 8v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg><span>The endpoints above are <b>illustrative</b> — this is a sample site and the API host is not live.</span></div>
+          </section>
+
+          <section class="docs-section" id="standards">
+            <h2>Standards &amp; References</h2>
+            <p>The open standards and authoritative sources CrisisShieldAI builds on. All links open the official upstream documentation.</p>
+            <div class="ref-grid">
+              <a class="ref-card" href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer"><b><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 3 4 6v5c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> MITRE ATT&amp;CK</b><p>Globally-accessible knowledge base of adversary tactics and techniques.</p><span class="ext">attack.mitre.org →</span></a>
+              <a class="ref-card" href="https://www.cve.org/" target="_blank" rel="noopener noreferrer"><b>CVE Program</b><p>The authoritative catalog of publicly-known security vulnerabilities.</p><span class="ext">cve.org →</span></a>
+              <a class="ref-card" href="https://nvd.nist.gov/" target="_blank" rel="noopener noreferrer"><b>NIST NVD</b><p>U.S. National Vulnerability Database with CVSS enrichment.</p><span class="ext">nvd.nist.gov →</span></a>
+              <a class="ref-card" href="https://oasis-open.github.io/cti-documentation/" target="_blank" rel="noopener noreferrer"><b>STIX / TAXII</b><p>OASIS standards for structured threat-intel exchange.</p><span class="ext">oasis-open.github.io →</span></a>
+              <a class="ref-card" href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener noreferrer"><b>CISA KEV</b><p>Catalog of vulnerabilities known to be exploited in the wild.</p><span class="ext">cisa.gov →</span></a>
+              <a class="ref-card" href="https://www.first.org/cvss/" target="_blank" rel="noopener noreferrer"><b>FIRST CVSS</b><p>The Common Vulnerability Scoring System specification.</p><span class="ext">first.org →</span></a>
+              <a class="ref-card" href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener noreferrer"><b>OWASP Top 10</b><p>The most critical web application security risks.</p><span class="ext">owasp.org →</span></a>
+              <a class="ref-card" href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener noreferrer"><b>NIST SP 800-61</b><p>Computer Security Incident Handling Guide.</p><span class="ext">csrc.nist.gov →</span></a>
+            </div>
+          </section>
+
+          <section class="docs-section" id="faq">
+            <h2>FAQ</h2>
+            <h3>Does CrisisShieldAI replace my SIEM?</h3>
+            <p>No. It sits alongside your SIEM/SOAR/EDR, enriching and prioritizing what they produce and pushing curated indicators back to them.</p>
+            <h3>What intel formats are supported?</h3>
+            <p>STIX 2.1 over TAXII 2.1 is the primary path, plus vendor APIs and common feed formats. Indicators are normalized to one internal schema.</p>
+            <h3>How is risk prioritized?</h3>
+            <p>By combining CVSS severity, exploit likelihood (EPSS/KEV) and your real asset exposure — so actively-exploited, widely-deployed issues rise to the top.</p>
+            <h3>Is this a real product?</h3>
+            <p>This site is a <strong>sample/demonstration</strong>. The dashboard shows fictional data and the API hosts are not live.</p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><path d="M16 2 4 7v8c0 7.5 5.2 13 12 15 6.8-2 12-7.5 12-15V7L16 2Z" stroke="url(#g2)" stroke-width="1.6"/><path d="M11 16.5 14.5 20 21 12.5" stroke="url(#g2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g2" x1="4" y1="2" x2="28" y2="30"><stop stop-color="#4da3ff"/><stop offset="1" stop-color="#7b5cff"/></linearGradient></defs></svg></span><span class="brand-text">Crisis<span>ShieldAI</span></span></a>
+        <p>AI-powered cyber threat intelligence, vulnerability management and incident response — for SOCs, enterprises and MSSPs.</p>
+        <span class="copyright">© 2026 CrisisShieldAI. All rights reserved.</span>
+      </div>
+      <div class="footer-cols">
+        <div><h4>Platform</h4><a href="index.html#features">Features</a><a href="index.html#platform">Architecture</a><a href="dashboard.html">Dashboard</a></div>
+        <div><h4>Solutions</h4><a href="index.html#solutions">SOC Teams</a><a href="index.html#solutions">Enterprises</a><a href="index.html#solutions">MSSPs</a></div>
+        <div><h4>Resources</h4><a href="index.html#blog">Blog</a><a href="docs.html">Documentation</a><a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">MITRE ATT&amp;CK</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Docs TOC scrollspy
+    (() => {
+      const links = [...document.querySelectorAll('#tocNav a')];
+      const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+      const io = new IntersectionObserver((ents) => {
+        ents.forEach(e => {
+          if (e.isIntersecting) { links.forEach(a => a.classList.remove('active')); map.get(e.target.id)?.classList.add('active'); }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' });
+      document.querySelectorAll('.docs-section').forEach(s => io.observe(s));
+    })();
+  </script>
+</body>
+</html>

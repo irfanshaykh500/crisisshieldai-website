@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CrisisShieldAI Security Operations Dashboard — real-time threat intelligence, vulnerability management, asset inventory and AI-driven incident response." />
+  <meta name="theme-color" content="#05070d" />
+  <meta name="robots" content="noindex" />
+  <title>CrisisShieldAI — Security Operations Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+</head>
+<body class="dash-body">
+  <canvas id="bg-grid" aria-hidden="true"></canvas>
+  <div class="aurora" aria-hidden="true"><span class="aurora-blob a1"></span><span class="aurora-blob a2"></span><span class="aurora-blob a3"></span></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <a href="index.html" class="brand side-brand">
+      <span class="brand-mark"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><path d="M16 2 4 7v8c0 7.5 5.2 13 12 15 6.8-2 12-7.5 12-15V7L16 2Z" stroke="url(#sg)" stroke-width="1.6"/><path d="M11 16.5 14.5 20 21 12.5" stroke="url(#sg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="sg" x1="4" y1="2" x2="28" y2="30"><stop stop-color="#4da3ff"/><stop offset="1" stop-color="#7b5cff"/></linearGradient></defs></svg></span>
+      <span class="brand-text">Crisis<span>ShieldAI</span></span>
+    </a>
+    <nav class="side-nav">
+      <a class="side-link active" data-view="overview"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>Overview</a>
+      <a class="side-link" data-view="threats"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 3 4 6v5c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Threat Intel</a>
+      <a class="side-link" data-view="vulns"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 2 2 7l10 5 10-5-10-5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 12l10 5 10-5M2 17l10 5 10-5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Vulnerabilities</a>
+      <a class="side-link" data-view="assets"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><rect x="3" y="4" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 20h8M12 16v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Assets</a>
+      <a class="side-link" data-view="incidents"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 2 1 21h22L12 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 9v5M12 17v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Incidents</a>
+      <a class="side-link" data-view="analytics"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M4 4v16h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8 14l3-4 3 2 4-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Analytics</a>
+      <a class="side-link" data-view="assistant"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 2a7 7 0 0 1 7 7c0 3-2 4-2 6H7c0-2-2-3-2-6a7 7 0 0 1 7-7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 21h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>AI Assistant</a>
+      <a class="side-link" data-view="reports"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M7 3h7l5 5v13H7V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6"/></svg>Reports</a>
+    </nav>
+    <div class="side-foot">
+      <div class="side-user"><span class="avatar">DU</span><div><b>Demo User</b><span>SOC Analyst · Sample</span></div></div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="dash-main">
+    <header class="topbar">
+      <button class="side-toggle" id="sideToggle" aria-label="Toggle sidebar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+      <div class="search"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.7"/><path d="m20 20-3-3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><input placeholder="Search CVEs, IOCs, assets…" /></div>
+      <div class="top-right">
+        <span class="demo-pill" title="This dashboard shows fictional sample data">SAMPLE</span>
+        <span class="live-pill"><span class="pulse-dot"></span>Live · <b id="clock">--:--:--</b></span>
+        <button class="icon-btn" title="Alerts"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M10.5 21a2 2 0 0 0 3 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><i class="badge">5</i></button>
+        <span class="avatar">DU</span>
+      </div>
+    </header>
+
+    <div class="dash-content" id="dashContent">
+      <div class="sample-banner" role="note">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 8v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg>
+        <span><b>Sample dashboard.</b> All metrics, CVEs, assets and incidents shown here are fictional demo data for illustration only — this is not a live security environment.</span>
+      </div>
+      <!-- ===== OVERVIEW ===== -->
+      <section class="view active" data-view="overview">
+        <div class="view-head"><h1>Executive Summary</h1><p>Real-time security posture across your environment.</p></div>
+        <div class="kpi-row">
+          <div class="kpi-card glass"><span class="kpi-ico ic-blue">🖥️</span><div><span>Total Assets</span><b data-count="1284">0</b></div></div>
+          <div class="kpi-card glass"><span class="kpi-ico ic-amber">⚠️</span><div><span>Open Vulnerabilities</span><b data-count="347">0</b></div></div>
+          <div class="kpi-card glass"><span class="kpi-ico ic-red">🛑</span><div><span>Critical Vulns</span><b data-count="18">0</b></div></div>
+          <div class="kpi-card glass"><span class="kpi-ico ic-violet">🚨</span><div><span>Active Incidents</span><b data-count="5">0</b></div></div>
+          <div class="kpi-card glass risk"><div class="gauge" id="riskGauge"></div><div><span>Risk Score</span><b id="riskScoreNum">0</b></div></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card glass">
+            <div class="card-h"><h3>Incident Trends (30 days)</h3><span class="legend"><i class="lc-blue"></i>Detected <i class="lc-violet"></i>Resolved</span></div>
+            <canvas id="trendChart" height="220"></canvas>
+          </div>
+          <div class="card glass">
+            <div class="card-h"><h3>Vulnerabilities by Severity</h3></div>
+            <div class="donut-wrap"><canvas id="donutChart" width="180" height="180"></canvas>
+              <ul class="donut-legend">
+                <li><i style="background:var(--red)"></i>Critical <b>18</b></li>
+                <li><i style="background:var(--amber)"></i>High <b>142</b></li>
+                <li><i style="background:var(--blue)"></i>Medium <b>96</b></li>
+                <li><i style="background:var(--green)"></i>Low <b>91</b></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card glass">
+            <div class="card-h"><h3>Live Threat Feed</h3><a class="card-link" data-goto="threats">View all →</a></div>
+            <div id="ovThreatFeed" class="feed-list"></div>
+          </div>
+          <div class="card glass">
+            <div class="card-h"><h3>Active Incidents</h3><a class="card-link" data-goto="incidents">View all →</a></div>
+            <div id="ovIncidents" class="feed-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== THREATS ===== -->
+      <section class="view" data-view="threats">
+        <div class="view-head"><h1>Threat Intelligence Feed</h1><p>Aggregated, correlated and scored from 240+ sources.</p></div>
+        <div class="threat-grid" id="threatGrid"></div>
+      </section>
+
+      <!-- ===== VULNS ===== -->
+      <section class="view" data-view="vulns">
+        <div class="view-head"><h1>Vulnerability Management</h1><p>Prioritized by real-world exploitability and asset exposure.</p></div>
+        <div class="card glass table-card">
+          <table class="data-table" id="vulnTable">
+            <thead><tr><th>CVE ID</th><th>CVSS</th><th>Patch</th><th>Affected Assets</th><th>Risk Level</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== ASSETS ===== -->
+      <section class="view" data-view="assets">
+        <div class="view-head"><h1>Asset Inventory</h1><p>Servers, workstations and cloud assets under continuous scan.</p></div>
+        <div class="asset-tabs" id="assetTabs">
+          <button class="atab active" data-type="all">All <b>1284</b></button>
+          <button class="atab" data-type="Server">Servers <b>312</b></button>
+          <button class="atab" data-type="Workstation">Workstations <b>820</b></button>
+          <button class="atab" data-type="Cloud">Cloud <b>152</b></button>
+        </div>
+        <div class="card glass table-card">
+          <table class="data-table" id="assetTable">
+            <thead><tr><th>Asset</th><th>Type</th><th>Operating System</th><th>IP Address</th><th>Last Scan</th><th>Status</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== INCIDENTS ===== -->
+      <section class="view" data-view="incidents">
+        <div class="view-head"><h1>Incident Response</h1><p>AI-prioritized incidents with recommended response actions.</p></div>
+        <div class="incident-grid" id="incidentGrid"></div>
+      </section>
+
+      <!-- ===== ANALYTICS ===== -->
+      <section class="view" data-view="analytics">
+        <div class="view-head"><h1>Threat Analytics</h1><p>Trends across severity, category and time.</p></div>
+        <div class="grid-2">
+          <div class="card glass"><div class="card-h"><h3>Top Threat Categories</h3></div><canvas id="catChart" height="240"></canvas></div>
+          <div class="card glass"><div class="card-h"><h3>Vulnerabilities by Severity</h3></div><canvas id="sevChart" height="240"></canvas></div>
+        </div>
+        <div class="card glass"><div class="card-h"><h3>Incident Trends (90 days)</h3></div><canvas id="bigTrend" height="120"></canvas></div>
+      </section>
+
+      <!-- ===== AI ASSISTANT ===== -->
+      <section class="view" data-view="assistant">
+        <div class="view-head"><h1>AI Security Assistant</h1><p>Ask about any CVE, IOC, threat actor or incident.</p></div>
+        <div class="card glass chat-card">
+          <div class="chat-log" id="chatLog"></div>
+          <div class="chat-suggest" id="chatSuggest">
+            <button>Explain CVE-2026-31882</button>
+            <button>What is LockBit 4.0?</button>
+            <button>How do I respond to Kerberoasting?</button>
+          </div>
+          <form class="chat-input" id="chatForm">
+            <input id="chatText" placeholder="Ask the AI Security Assistant…" autocomplete="off" />
+            <button class="btn btn-primary" type="submit">Send</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ===== REPORTS ===== -->
+      <section class="view" data-view="reports">
+        <div class="view-head"><h1>Reports</h1><p>Generate executive and compliance-ready reports.</p></div>
+        <div class="report-grid">
+          <div class="report-card glass"><span class="rc-ico">📄</span><h3>Executive Summary</h3><p>Board-ready posture overview with risk scores and trends.</p><div class="rc-actions"><button class="btn btn-primary" data-report="PDF">Generate PDF</button></div></div>
+          <div class="report-card glass"><span class="rc-ico">📊</span><h3>Vulnerability Report</h3><p>Full CVE inventory with CVSS, patch status and exposure.</p><div class="rc-actions"><button class="btn btn-outline" data-report="Excel">Excel</button><button class="btn btn-outline" data-report="CSV">CSV</button></div></div>
+          <div class="report-card glass"><span class="rc-ico">🛡️</span><h3>Incident Report</h3><p>Timeline, impact and response actions for active incidents.</p><div class="rc-actions"><button class="btn btn-primary" data-report="PDF">Generate PDF</button></div></div>
+        </div>
+        <div class="report-toast" id="reportToast"></div>
+      </section>
+    </div>
+  </div>
+
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
